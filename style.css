@@ -8,9 +8,12 @@
   --cursado: #f59e0b;
   --disponible: #3b82f6;
   --bloqueado: #475569;
-  --target: #a855f7;
-  --direct: #ec4899;
-  --indirect: #8b5cf6;
+  
+  /* Colores para el Rastreador según el tipo de previa */
+  --req-aprobado: #f43f5e;
+  --req-curso: #f59e0b;
+  --req-correquisito: #06b6d4;
+  --req-semestre: #a855f7;
 }
 
 body {
@@ -55,13 +58,34 @@ header {
 }
 
 .info-banner {
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid var(--disponible);
-  padding: 10px 15px;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid var(--border);
+  padding: 12px 18px;
   border-radius: 6px;
   margin-bottom: 20px;
   font-size: 0.9rem;
-  color: #93c5fd;
+  color: var(--text);
+}
+
+.tracer-legend {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-box {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 2px solid transparent;
 }
 
 #stats {
@@ -117,14 +141,35 @@ header {
   color: var(--muted);
 }
 
+.subject-missing {
+  font-size: 0.75rem;
+  color: #f87171;
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(239, 68, 68, 0.3);
+  line-height: 1.2;
+}
+
 /* Modos del Simulador */
-.subject-card.status-bloqueado { border-color: var(--bloqueado); opacity: 0.5; cursor: not-allowed; }
+.subject-card.status-bloqueado { border-color: var(--bloqueado); opacity: 0.75; cursor: not-allowed; }
 .subject-card.status-disponible { border-color: var(--disponible); }
 .subject-card.status-cursado { border-color: var(--cursado); background: rgba(245, 158, 11, 0.1); }
 .subject-card.status-aprobado { border-color: var(--aprobado); background: rgba(16, 185, 129, 0.1); }
 
-/* Modos del Rastreador de Prerrequisitos */
-.subject-card.tracer-target { border-color: var(--target); background: rgba(168, 85, 247, 0.2); box-shadow: 0 0 10px rgba(168, 85, 247, 0.5); }
-.subject-card.tracer-direct { border-color: var(--direct); background: rgba(236, 72, 153, 0.15); }
-.subject-card.tracer-indirect { border-color: var(--indirect); background: rgba(139, 92, 246, 0.15); }
-.subject-card.tracer-dimmed { opacity: 0.3; }
+/* Modos del Rastreador por tipo de previa */
+.subject-card.tracer-target {
+  border-color: #a855f7;
+  background: rgba(168, 85, 247, 0.2);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+}
+
+.subject-card.tracer-type-aprobado { border-color: var(--req-aprobado); background: rgba(244, 63, 94, 0.12); }
+.subject-card.tracer-type-curso { border-color: var(--req-curso); background: rgba(245, 158, 11, 0.12); }
+.subject-card.tracer-type-correquisito { border-color: var(--req-correquisito); background: rgba(6, 182, 212, 0.12); }
+.subject-card.tracer-type-semestre { border-color: var(--req-semestre); background: rgba(168, 85, 247, 0.12); }
+
+/* Distinción Directa vs Indirecta */
+.subject-card.level-direct { border-style: solid; border-width: 2px; }
+.subject-card.level-indirect { border-style: dashed; border-width: 2px; opacity: 0.85; }
+
+.subject-card.tracer-dimmed { opacity: 0.25; }

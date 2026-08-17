@@ -14,8 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     subjects.forEach(s => state[s.codigo] = 'pendiente');
   }
 
-  renderGrid();
-  updateStats();
+  setTab('simulador');
 });
 
 function evaluateStatus(subject) {
@@ -23,17 +22,10 @@ function evaluateStatus(subject) {
   if (state[subject.codigo] === 'cursado') return 'cursado';
 
   const prev = subject.previas || {};
-
-  // Validar cursadas de prerrequisito
   const cursoOK = (prev.curso || []).every(code => ['cursado', 'aprobado'].includes(state[code]));
-  
-  // Validar aprobadas de prerrequisito
   const aprobadoOK = (prev.aprobado || []).every(code => state[code] === 'aprobado');
-
-  // Validar correquisitos (deben estar al menos en 'cursado' o 'aprobado')
   const correquisitoOK = (prev.correquisito || []).every(code => ['cursado', 'aprobado'].includes(state[code]));
 
-  // Validar semestre completo
   let semestreOK = true;
   if (prev.semestreCompleto) {
     const semSubjects = subjects.filter(s => s.semestre === prev.semestreCompleto);
@@ -43,6 +35,83 @@ function evaluateStatus(subject) {
   return (cursoOK && aprobadoOK && correquisitoOK && semestreOK) ? 'disponible' : 'bloqueado';
 }
 
+function getMissingPrereqs(subject) {
+  const prev = subject.previas || {};
+  const missing = [];
+
+  (prev.aprobado || []).forEach(code => {
+    if (state[code] !== 'aprobado') {
+      missing.push(`${code} (Aprob)`);
+    }
+  });
+
+  (prev.curso || []).forEach(code => {
+    if (!['cursado', 'aprobado'].includes(state[code])) {
+      missing.push(`${code} (Curso)`);
+    }
+  });
+
+  (prev.correquisito || []).forEach(code => {
+    if (!['cursado', 'aprobado'].includes(state[code])) {
+      missing.push(`${code} (Correq)`);
+    }
+  });
+
+  if (prev.semestreCompleto) {
+    const semSubjects = subjects.filter(s => s.semestre === prev.semestreCompleto);
+    if (!semSubjects.every(s => state[s.codigo] === 'aprobado')) {
+      missing.push(`Semestre ${prev.semestreCompleto} Completo`);
+    }
+  }
+
+  return missing;
+}
+
+function getBackwardDependencies(rootCode) {
+  const deps = new Map();
+  const rootSub = subjects.find(s => s.codigo === rootCode);
+  if (!rootSub) return deps;
+
+  const prev = rootSub.previas || {};
+
+  (prev.aprobado || []).forEach(c => deps.set(c, { level: 'direct', type: 'aprobado' }));
+  (prev.curso || []).forEach(c => deps.set(c, { level: 'direct', type: 'curso' }));
+  (prev.correquisito || []).forEach(c => deps.set(c, { level: 'direct', type: 'correquisito' }));
+  if (prev.semestreCompleto) {
+    subjects.filter(s => s.semestre === prev.semestreCompleto).forEach(s => {
+      if (!deps.has(s.codigo)) deps.set(s.codigo, { level: 'direct', type: 'semestre' });
+    });
+  }
+
+  const queue = Array.from(deps.keys());
+  const visited = new Set([rootCode, ...queue]);
+
+  while (queue.length > 0) {
+    const currentCode = queue.shift();
+    const sub = subjects.find(s => s.codigo === currentCode);
+    if (!sub) continue;
+
+    const p = sub.previas || {};
+    
+    const processPrereq = (code, reqType) => {
+      if (!visited.has(code)) {
+        visited.add(code);
+        deps.set(code, { level: 'indirect', type: reqType });
+        queue.push(code);
+      }
+    };
+
+    (p.aprobado || []).forEach(c => processPrereq(c, 'aprobado'));
+    (p.curso || []).forEach(c => processPrereq(c, 'curso'));
+    (p.correquisito || []).forEach(c => processPrereq(c, 'correquisito'));
+    if (p.semestreCompleto) {
+      subjects.filter(s => s.semestre === p.semestreCompleto).forEach(s => processPrereq(s.codigo, 'semestre'));
+    }
+  }
+
+  return deps;
+}
+
 function setTab(tab) {
   currentTab = tab;
   document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -50,9 +119,18 @@ function setTab(tab) {
 
   const banner = document.getElementById('tab-info');
   if (tab === 'simulador') {
-    banner.innerText = 'Modo Simulador: Haz clic en las materias habilitadas para avanzar en tu carrera (Disponible ➔ Cursado ➔ Aprobado).';
+    banner.innerHTML = '<strong>Modo Simulador:</strong> Haz clic en las materias habilitadas para cambiar su estado (Disponible ➔ Cursado ➔ Aprobado). Las materias bloqueadas indican qué requisitos te faltan cumplir.';
   } else {
-    banner.innerText = 'Modo Rastreador: Haz clic en cualquier materia para resaltar cuáles necesitas haber cursado, aprobado o correquisitado previamente.';
+    banner.innerHTML = `
+      <div><strong>Modo Rastreador:</strong> Haz clic en cualquier materia para inspeccionar toda la cadena de requisitos requeridos.</div>
+      <div class="tracer-legend">
+        <span class="legend-item"><span class="legend-box" style="background:var(--req-aprobado)"></span> Exige Aprobado</span>
+        <span class="legend-item"><span class="legend-box" style="background:var(--req-curso)"></span> Exige Curso</span>
+        <span class="legend-item"><span class="legend-box" style="background:var(--req-correquisito)"></span> Correquisito</span>
+        <span class="legend-item"><span class="legend-box" style="border:2px solid #fff"></span> Borde Sólido: Directa</span>
+        <span class="legend-item"><span class="legend-box" style="border:2px dashed #fff"></span> Borde Punteado: Indirecta</span>
+      </div>
+    `;
   }
 
   renderGrid();
@@ -83,48 +161,12 @@ function toggleState(codigo) {
   updateStats();
 }
 
-function getBackwardDependencies(rootCode) {
-  const direct = new Set();
-  const indirect = new Set();
-
-  function getImmediatePrereqs(code) {
-    const sub = subjects.find(s => s.codigo === code);
-    if (!sub) return [];
-    const p = sub.previas || {};
-    let list = [...(p.curso || []), ...(p.aprobado || []), ...(p.correquisito || [])];
-    if (p.semestreCompleto) {
-      subjects.filter(s => s.semestre === p.semestreCompleto).forEach(s => list.push(s.codigo));
-    }
-    return list;
-  }
-
-  const immediate = getImmediatePrereqs(rootCode);
-  immediate.forEach(c => direct.add(c));
-
-  const queue = [...immediate];
-  const visited = new Set([rootCode, ...immediate]);
-
-  while (queue.length > 0) {
-    const current = queue.shift();
-    const prereqs = getImmediatePrereqs(current);
-    prereqs.forEach(pCode => {
-      if (!visited.has(pCode)) {
-        visited.add(pCode);
-        indirect.add(pCode);
-        queue.push(pCode);
-      }
-    });
-  }
-
-  return { direct, indirect };
-}
-
 function renderGrid() {
   const container = document.getElementById('curriculum-grid');
   container.innerHTML = '';
 
   const semestres = [...new Set(subjects.map(s => s.semestre))].sort((a, b) => a - b);
-  let tracerDeps = { direct: new Set(), indirect: new Set() };
+  let tracerDeps = new Map();
 
   if (currentTab === 'tracer' && selectedTracerCode) {
     tracerDeps = getBackwardDependencies(selectedTracerCode);
@@ -143,6 +185,15 @@ function renderGrid() {
       if (currentTab === 'simulador') {
         const status = evaluateStatus(s);
         card.className = `subject-card status-${status}`;
+
+        let missingHTML = '';
+        if (status === 'bloqueado' && state[s.codigo] === 'pendiente') {
+          const missing = getMissingPrereqs(s);
+          if (missing.length > 0) {
+            missingHTML = `<div class="subject-missing">Pendiente: ${missing.join(' - ')}</div>`;
+          }
+        }
+
         card.innerHTML = `
           <div class="subject-title">${s.nombre}</div>
           <div class="subject-code">${s.codigo}</div>
@@ -150,6 +201,7 @@ function renderGrid() {
             <span>Créditos: ${s.creditos}</span>
             <span>${state[s.codigo].toUpperCase()}</span>
           </div>
+          ${missingHTML}
         `;
       } else {
         // Tab Rastreador
@@ -159,17 +211,15 @@ function renderGrid() {
         if (s.codigo === selectedTracerCode) {
           tracerClass = 'tracer-target';
           badgeText = 'SELECCIONADA';
-        } else if (tracerDeps.direct.has(s.codigo)) {
-          tracerClass = 'tracer-direct';
-          badgeText = 'PREVIA DIRECTA';
-        } else if (tracerDeps.indirect.has(s.codigo)) {
-          tracerClass = 'tracer-indirect';
-          badgeText = 'PREVIA INDIRECTA';
+        } else if (tracerDeps.has(s.codigo)) {
+          const dep = tracerDeps.get(s.codigo);
+          tracerClass = `tracer-type-${dep.type} level-${dep.level}`;
+          const typeName = dep.type === 'aprobado' ? 'APROB' : dep.type === 'curso' ? 'CURSO' : 'CORREQ';
+          badgeText = `${dep.level === 'direct' ? 'DIRECTA' : 'INDIRECTA'} (${typeName})`;
         } else if (selectedTracerCode) {
           tracerClass = 'tracer-dimmed';
         }
 
-        card.className = `subject-card ${tracerClass}`;
         card.innerHTML = `
           <div class="subject-title">${s.nombre}</div>
           <div class="subject-code">${s.codigo}</div>
@@ -178,6 +228,7 @@ function renderGrid() {
             <span>${badgeText}</span>
           </div>
         `;
+        card.className = `subject-card ${tracerClass}`;
       }
 
       col.appendChild(card);
