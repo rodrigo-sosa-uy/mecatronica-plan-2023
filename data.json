@@ -1,0 +1,999 @@
+[
+  {
+    "codigo": "IMEC-G-1-COES",
+    "nombre": "Comunicación Oral y Escrita",
+    "semestre": 1,
+    "creditos": 5,
+    "horasClase": 36,
+    "horasTotales": 75,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-I-1-PRG1",
+    "nombre": "Programación 1",
+    "semestre": 1,
+    "creditos": 6,
+    "horasClase": 48,
+    "horasTotales": 87,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-E-1-TDC1",
+    "nombre": "Teoría de Circuitos 1",
+    "semestre": 1,
+    "creditos": 6,
+    "horasClase": 48,
+    "horasTotales": 87,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-C-1-MAT1",
+    "nombre": "Matemática 1",
+    "semestre": 1,
+    "creditos": 8,
+    "horasClase": 60,
+    "horasTotales": 117,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-C-1-QMCA",
+    "nombre": "Química",
+    "semestre": 1,
+    "creditos": 6,
+    "horasClase": 48,
+    "horasTotales": 87,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-M-1-INTM",
+    "nombre": "Introducción a la Mecatrónica",
+    "semestre": 1,
+    "creditos": 4,
+    "horasClase": 36,
+    "horasTotales": 63,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-C-2-MAT2",
+    "nombre": "Matemática 2",
+    "semestre": 2,
+    "creditos": 8,
+    "horasClase": 60,
+    "horasTotales": 117,
+    "previas": {
+      "curso": [
+        "IMEC-C-1-MAT1"
+      ],
+      "aprobado": [],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-I-2-FMIN",
+    "nombre": "Fundamentos Matemáticos con Informática",
+    "semestre": 2,
+    "creditos": 6,
+    "horasClase": 48,
+    "horasTotales": 87,
+    "previas": {
+      "curso": [
+        "IMEC-I-1-PRG1",
+        "IMEC-C-1-MAT1"
+      ],
+      "aprobado": [],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-E-2-TDC2",
+    "nombre": "Teoría de Circuitos 2",
+    "semestre": 2,
+    "creditos": 6,
+    "horasClase": 48,
+    "horasTotales": 87,
+    "previas": {
+      "curso": [
+        "IMEC-E-1-TDC1"
+      ],
+      "aprobado": [],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-C-2-FIS1",
+    "nombre": "Física 1 (Mecánica)",
+    "semestre": 2,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [
+        "IMEC-C-1-MAT1"
+      ],
+      "aprobado": [],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-M-2-TDM1",
+    "nombre": "Tecnologías de Materiales 1",
+    "semestre": 2,
+    "creditos": 6,
+    "horasClase": 48,
+    "horasTotales": 87,
+    "previas": {
+      "curso": [
+        "IMEC-C-1-QMCA"
+      ],
+      "aprobado": [],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-S-2-DCAD",
+    "nombre": "Dibujo Computarizado (CAD)",
+    "semestre": 2,
+    "creditos": 5,
+    "horasClase": 36,
+    "horasTotales": 75,
+    "previas": {
+      "curso": [
+        "IMEC-M-1-INTM"
+      ],
+      "aprobado": [],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-H-2-PIC1",
+    "nombre": "Proyecto Integrador de Competencias 1 (P.I.C)",
+    "semestre": 2,
+    "creditos": 3,
+    "horasClase": 24,
+    "horasTotales": 51,
+    "previas": {
+      "curso": [],
+      "aprobado": [
+        "IMEC-M-1-INTM"
+      ],
+      "semestreCompleto": null,
+      "correquisito": [
+        "IMEC-I-2-FMIN",
+        "IMEC-E-2-TDC2",
+        "IMEC-M-2-TDM1",
+        "IMEC-S-2-DCAD"
+      ]
+    }
+  },
+  {
+    "codigo": "IMEC-C-3-MAT3",
+    "nombre": "Matemática 3",
+    "semestre": 3,
+    "creditos": 8,
+    "horasClase": 60,
+    "horasTotales": 117,
+    "previas": {
+      "curso": [
+        "IMEC-C-2-MAT2"
+      ],
+      "aprobado": [
+        "IMEC-C-1-MAT1"
+      ],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-I-3-PRG2",
+    "nombre": "Programación 2",
+    "semestre": 3,
+    "creditos": 6,
+    "horasClase": 48,
+    "horasTotales": 87,
+    "previas": {
+      "curso": [
+        "IMEC-I-2-FMIN"
+      ],
+      "aprobado": [
+        "IMEC-I-1-PRG1"
+      ],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-E-3-EALG",
+    "nombre": "Electrónica Analógica Aplicada",
+    "semestre": 3,
+    "creditos": 6,
+    "horasClase": 48,
+    "horasTotales": 87,
+    "previas": {
+      "curso": [
+        "IMEC-E-2-TDC2",
+        "IMEC-C-2-FIS1",
+        "IMEC-C-2-MAT2"
+      ],
+      "aprobado": [
+        "IMEC-C-1-MAT1",
+        "IMEC-E-1-TDC1"
+      ],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-G-3-SLSO",
+    "nombre": "Seguridad Laboral y Salud Ocupacional",
+    "semestre": 3,
+    "creditos": 5,
+    "horasClase": 36,
+    "horasTotales": 75,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 1,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-M-3-DIES",
+    "nombre": "Dinámica y Estática",
+    "semestre": 3,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [
+        "IMEC-C-2-FIS1"
+      ],
+      "aprobado": [
+        "IMEC-M-1-INTM"
+      ],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-E-3-EDG1",
+    "nombre": "Electrónica Digital 1",
+    "semestre": 3,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [
+        "IMEC-I-2-FMIN"
+      ],
+      "aprobado": [
+        "IMEC-E-1-TDC1"
+      ],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-T-4-TMPR",
+    "nombre": "Tecnologías de Microprocesamiento",
+    "semestre": 4,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [
+        "IMEC-E-3-EDG1"
+      ],
+      "aprobado": [
+        "IMEC-I-2-FMIN"
+      ],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-I-4-PRG3",
+    "nombre": "Programación 3",
+    "semestre": 4,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [
+        "IMEC-I-1-PRG1",
+        "IMEC-C-1-MAT1"
+      ],
+      "aprobado": [],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-M-4-MEM1",
+    "nombre": "Materiales y Elementos de Máquinas 1",
+    "semestre": 4,
+    "creditos": 6,
+    "horasClase": 48,
+    "horasTotales": 87,
+    "previas": {
+      "curso": [
+        "IMEC-M-3-DIES"
+      ],
+      "aprobado": [
+        "IMEC-I-2-FMIN"
+      ],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-C-4-FIS2",
+    "nombre": "Física 2 (Electromagnetismo)",
+    "semestre": 4,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [],
+      "aprobado": [
+        "IMEC-C-1-MAT1",
+        "IMEC-I-2-FMIN",
+        "IMEC-C-2-FIS1"
+      ],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-E-4-AEIN",
+    "nombre": "Aplicaciones Electro Industriales",
+    "semestre": 4,
+    "creditos": 6,
+    "horasClase": 48,
+    "horasTotales": 87,
+    "previas": {
+      "curso": [
+        "IMEC-E-3-EALG"
+      ],
+      "aprobado": [
+        "IMEC-E-2-TDC2",
+        "IMEC-I-2-FMIN"
+      ],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-H-4-PIC2",
+    "nombre": "Proyecto Integrador de Competencias 2 (P.I.C)",
+    "semestre": 4,
+    "creditos": 3,
+    "horasClase": 24,
+    "horasTotales": 51,
+    "previas": {
+      "curso": [],
+      "aprobado": [
+        "IMEC-H-2-PIC1"
+      ],
+      "semestreCompleto": null,
+      "correquisito": [
+        "IMEC-T-4-TMPR",
+        "IMEC-I-4-PRG3",
+        "IMEC-M-4-MEM1",
+        "IMEC-E-4-AEIN"
+      ]
+    }
+  },
+  {
+    "codigo": "IMEC-E-5-MAEL",
+    "nombre": "Máquinas Eléctricas",
+    "semestre": 5,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [
+        "IMEC-E-4-AEIN"
+      ],
+      "aprobado": [
+        "IMEC-E-3-EALG"
+      ],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-T-5-TIND",
+    "nombre": "Telemática Industrial",
+    "semestre": 5,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [
+        "IMEC-T-4-TMPR",
+        "IMEC-I-4-PRG3"
+      ],
+      "aprobado": [
+        "IMEC-E-3-EALG",
+        "IMEC-I-3-PRG2"
+      ],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-C-5-FIS3",
+    "nombre": "Física 3 (Térmica y Fluidos)",
+    "semestre": 5,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 3,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-E-5-INSC",
+    "nombre": "Introducción a los Sistemas de Control",
+    "semestre": 5,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [
+        "IMEC-E-4-AEIN"
+      ],
+      "aprobado": [],
+      "semestreCompleto": 3,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-G-5-LEGL",
+    "nombre": "Legislación Laboral",
+    "semestre": 5,
+    "creditos": 5,
+    "horasClase": 36,
+    "horasTotales": 75,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 3,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-M-5-PFAB",
+    "nombre": "Procesos de Fabricación",
+    "semestre": 5,
+    "creditos": 5,
+    "horasClase": 48,
+    "horasTotales": 81,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 3,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-H-5-APTM",
+    "nombre": "Anteproyecto de Tecnólogo",
+    "semestre": 5,
+    "creditos": 5,
+    "horasClase": 12,
+    "horasTotales": 68,
+    "previas": {
+      "curso": [],
+      "aprobado": [
+        "IMEC-H-4-PIC2"
+      ],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-H-5-PPCU",
+    "nombre": "Práctica Profesional Curricular",
+    "semestre": 5,
+    "creditos": 8,
+    "horasClase": 12,
+    "horasTotales": 118,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 3,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-E-6-EDG2",
+    "nombre": "Electrónica Digital 2",
+    "semestre": 6,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [],
+      "aprobado": [
+        "IMEC-E-3-EALG",
+        "IMEC-E-3-EDG1"
+      ],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-M-6-HYNE",
+    "nombre": "Hidráulica y Neumática",
+    "semestre": 6,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 4,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-T-6-AUTM",
+    "nombre": "Automatización",
+    "semestre": 6,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [
+        "IMEC-T-5-TIND",
+        "IMEC-E-5-INSC"
+      ],
+      "aprobado": [],
+      "semestreCompleto": 4,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-K-6-TDCR",
+    "nombre": "Tecnologías de Control y Robótica",
+    "semestre": 6,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [
+        "IMEC-E-5-INSC"
+      ],
+      "aprobado": [],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-E-6-IMEL",
+    "nombre": "Instrumentación y Medidas Eléctricas",
+    "semestre": 6,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [
+        "IMEC-E-5-MAEL",
+        "IMEC-E-5-INSC"
+      ],
+      "aprobado": [],
+      "semestreCompleto": 4,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-S-6-PIND",
+    "nombre": "Procesos Industriales",
+    "semestre": 6,
+    "creditos": 5,
+    "horasClase": 36,
+    "horasTotales": 75,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 4,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-H-6-PFTM",
+    "nombre": "Proyecto Final de Tecnólogo",
+    "semestre": 6,
+    "creditos": 5,
+    "horasClase": 12,
+    "horasTotales": 68,
+    "previas": {
+      "curso": [],
+      "aprobado": [
+        "IMEC-H-5-APTM"
+      ],
+      "semestreCompleto": null,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-C-7-MAT4",
+    "nombre": "Matemática 4",
+    "semestre": 7,
+    "creditos": 8,
+    "horasClase": 60,
+    "horasTotales": 123,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 5,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-E-7-EPOT",
+    "nombre": "Electrónica de Potencia",
+    "semestre": 7,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [
+        "IMEC-K-6-TDCR",
+        "IMEC-E-6-IMEL"
+      ],
+      "aprobado": [],
+      "semestreCompleto": 5,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-M-7-MEM2",
+    "nombre": "Materiales y Elementos de Máquinas 2",
+    "semestre": 7,
+    "creditos": 6,
+    "horasClase": 60,
+    "horasTotales": 87,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 5,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-G-7-GPYE",
+    "nombre": "Gestión de Proyectos y Emprendimientos",
+    "semestre": 7,
+    "creditos": 4,
+    "horasClase": 36,
+    "horasTotales": 63,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 5,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-T-7-SEMB",
+    "nombre": "Sistemas Embebidos",
+    "semestre": 7,
+    "creditos": 6,
+    "horasClase": 60,
+    "horasTotales": 87,
+    "previas": {
+      "curso": [
+        "IMEC-K-6-TDCR"
+      ],
+      "aprobado": [],
+      "semestreCompleto": 5,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-M-7-TCYF",
+    "nombre": "Transferencia de Calor y Fluidos",
+    "semestre": 7,
+    "creditos": 6,
+    "horasClase": 60,
+    "horasTotales": 87,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 5,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-C-8-PYES",
+    "nombre": "Probabilidad y Estadística",
+    "semestre": 8,
+    "creditos": 5,
+    "horasClase": 36,
+    "horasTotales": 75,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 6,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-S-8-MNPI",
+    "nombre": "Métodos Numéricos para Ingeniería",
+    "semestre": 8,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 111,
+    "previas": {
+      "curso": [
+        "IMEC-C-7-MAT4"
+      ],
+      "aprobado": [],
+      "semestreCompleto": 6,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-T-8-PRDS",
+    "nombre": "Procesamiento de Señales (A/D)",
+    "semestre": 8,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 6,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-M-8-MDSA",
+    "nombre": "Mantenimiento de Sistemas Automatizados",
+    "semestre": 8,
+    "creditos": 6,
+    "horasClase": 48,
+    "horasTotales": 87,
+    "previas": {
+      "curso": [
+        "IMEC-T-7-SEMB"
+      ],
+      "aprobado": [],
+      "semestreCompleto": 6,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-K-8-SCAP",
+    "nombre": "Sistemas de Control Aplicados",
+    "semestre": 8,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [
+        "IMEC-E-7-EPOT"
+      ],
+      "aprobado": [],
+      "semestreCompleto": 6,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-M-8-TDM2",
+    "nombre": "Tecnología de Materiales 2",
+    "semestre": 8,
+    "creditos": 6,
+    "horasClase": 48,
+    "horasTotales": 87,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 6,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-K-9-DMEC",
+    "nombre": "Diseño Mecatrónico",
+    "semestre": 9,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [
+        "IMEC-K-8-SCAP",
+        "IMEC-M-8-MDSA"
+      ],
+      "aprobado": [],
+      "semestreCompleto": 7,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-K-9-RBIN",
+    "nombre": "Robótica Industrial",
+    "semestre": 9,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [
+        "IMEC-K-8-SCAP"
+      ],
+      "aprobado": [],
+      "semestreCompleto": 7,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-S-9-MIAC",
+    "nombre": "Manufactura Asistida por Computador",
+    "semestre": 9,
+    "creditos": 5,
+    "horasClase": 48,
+    "horasTotales": 81,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 7,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-S-9-CPIN",
+    "nombre": "Costos para Ingeniería",
+    "semestre": 9,
+    "creditos": 5,
+    "horasClase": 36,
+    "horasTotales": 75,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 7,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "OPT-9-OPT1",
+    "nombre": "Optativa 1",
+    "semestre": 9,
+    "creditos": 6,
+    "horasClase": 48,
+    "horasTotales": 87,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 7,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-H-9-PFG1",
+    "nombre": "Proyecto Final de Grado 1",
+    "semestre": 9,
+    "creditos": 8,
+    "horasClase": 24,
+    "horasTotales": 126,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 8,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-S-10-GCAL",
+    "nombre": "Gestión de Calidad",
+    "semestre": 10,
+    "creditos": 5,
+    "horasClase": 36,
+    "horasTotales": 75,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 8,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-S-10-GIAM",
+    "nombre": "Gestión de Impacto Ambiental",
+    "semestre": 10,
+    "creditos": 5,
+    "horasClase": 36,
+    "horasTotales": 75,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 8,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-K-10-SICF",
+    "nombre": "Sistemas Inteligentes y Ciberfísicos",
+    "semestre": 10,
+    "creditos": 7,
+    "horasClase": 60,
+    "horasTotales": 99,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 8,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "OPT-10-OPT2",
+    "nombre": "Optativa 2",
+    "semestre": 10,
+    "creditos": 6,
+    "horasClase": 48,
+    "horasTotales": 87,
+    "previas": {
+      "curso": [],
+      "aprobado": [],
+      "semestreCompleto": 8,
+      "correquisito": []
+    }
+  },
+  {
+    "codigo": "IMEC-H-10-PFG2",
+    "nombre": "Proyecto Final de Grado 2",
+    "semestre": 10,
+    "creditos": 8,
+    "horasClase": 24,
+    "horasTotales": 126,
+    "previas": {
+      "curso": [],
+      "aprobado": [
+        "IMEC-H-9-PFG1"
+      ],
+      "semestreCompleto": 8,
+      "correquisito": []
+    }
+  }
+]

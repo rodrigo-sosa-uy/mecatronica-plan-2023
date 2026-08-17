@@ -1,0 +1,97 @@
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --border: #334155;
+  --aprobado: #10b981;
+  --cursado: #f59e0b;
+  --disponible: #3b82f6;
+  --bloqueado: #475569;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+#stats {
+  display: flex;
+  gap: 20px;
+  font-size: 1.1rem;
+}
+
+#curriculum-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+  overflow-x: auto;
+}
+
+.semester-col {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.semester-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 5px;
+}
+
+.subject-card {
+  background: var(--card-bg);
+  border: 2px solid var(--bloqueado);
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: transform 0.1s, border-color 0.2s;
+  user-select: none;
+}
+
+.subject-card:hover {
+  transform: translateY(-2px);
+}
+
+.subject-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.subject-code {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.subject-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+/* Estados de las materias */
+.subject-card.status-bloqueado { border-color: var(--bloqueado); opacity: 0.6; }
+.subject-card.status-disponible { border-color: var(--disponible); }
+.subject-card.status-cursado { border-color: var(--cursado); background: rgba(245, 158, 11, 0.1); }
+.subject-card.status-aprobado { border-color: var(--aprobado); background: rgba(16, 185, 129, 0.1); }
