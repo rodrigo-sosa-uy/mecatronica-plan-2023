@@ -1,11 +1,12 @@
 let subjects = [];
-const state = {}; // Guarda estado por código: 'pendiente', 'cursado', 'aprobado'
+const state = {}; 
+let currentTab = 'simulador';
+let selectedTracerCode = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
   const response = await fetch('./data.json');
   subjects = await response.json();
   
-  // Inicializar estado guardado o por defecto
   const savedState = localStorage.getItem('mecatronica_state');
   if (savedState) {
     Object.assign(state, JSON.parse(savedState));
@@ -21,13 +22,16 @@ function evaluateStatus(subject) {
   if (state[subject.codigo] === 'aprobado') return 'aprobado';
   if (state[subject.codigo] === 'cursado') return 'cursado';
 
-  const prev = subject.previas;
+  const prev = subject.previas || {};
 
-  // Validar materias a tener en curso/aprobadas
-  const cursoOK = prev.curso.every(code => ['cursado', 'aprobado'].includes(state[code]));
+  // Validar cursadas de prerrequisito
+  const cursoOK = (prev.curso || []).every(code => ['cursado', 'aprobado'].includes(state[code]));
   
-  // Validar materias aprobadas obligatorias
-  const aprobadoOK = prev.aprobado.every(code => state[code] === 'aprobado');
+  // Validar aprobadas de prerrequisito
+  const aprobadoOK = (prev.aprobado || []).every(code => state[code] === 'aprobado');
+
+  // Validar correquisitos (deben estar al menos en 'cursado' o 'aprobado')
+  const correquisitoOK = (prev.correquisito || []).every(code => ['cursado', 'aprobado'].includes(state[code]));
 
   // Validar semestre completo
   let semestreOK = true;
@@ -36,7 +40,31 @@ function evaluateStatus(subject) {
     semestreOK = semSubjects.every(s => state[s.codigo] === 'aprobado');
   }
 
-  return (cursoOK && aprobadoOK && semestreOK) ? 'disponible' : 'bloqueado';
+  return (cursoOK && aprobadoOK && correquisitoOK && semestreOK) ? 'disponible' : 'bloqueado';
+}
+
+function setTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  document.getElementById(`tab-${tab}`).classList.add('active');
+
+  const banner = document.getElementById('tab-info');
+  if (tab === 'simulador') {
+    banner.innerText = 'Modo Simulador: Haz clic en las materias habilitadas para avanzar en tu carrera (Disponible ➔ Cursado ➔ Aprobado).';
+  } else {
+    banner.innerText = 'Modo Rastreador: Haz clic en cualquier materia para resaltar cuáles necesitas haber cursado, aprobado o correquisitado previamente.';
+  }
+
+  renderGrid();
+}
+
+function handleCardClick(codigo) {
+  if (currentTab === 'simulador') {
+    toggleState(codigo);
+  } else {
+    selectedTracerCode = (selectedTracerCode === codigo) ? null : codigo;
+    renderGrid();
+  }
 }
 
 function toggleState(codigo) {
@@ -55,11 +83,52 @@ function toggleState(codigo) {
   updateStats();
 }
 
+function getBackwardDependencies(rootCode) {
+  const direct = new Set();
+  const indirect = new Set();
+
+  function getImmediatePrereqs(code) {
+    const sub = subjects.find(s => s.codigo === code);
+    if (!sub) return [];
+    const p = sub.previas || {};
+    let list = [...(p.curso || []), ...(p.aprobado || []), ...(p.correquisito || [])];
+    if (p.semestreCompleto) {
+      subjects.filter(s => s.semestre === p.semestreCompleto).forEach(s => list.push(s.codigo));
+    }
+    return list;
+  }
+
+  const immediate = getImmediatePrereqs(rootCode);
+  immediate.forEach(c => direct.add(c));
+
+  const queue = [...immediate];
+  const visited = new Set([rootCode, ...immediate]);
+
+  while (queue.length > 0) {
+    const current = queue.shift();
+    const prereqs = getImmediatePrereqs(current);
+    prereqs.forEach(pCode => {
+      if (!visited.has(pCode)) {
+        visited.add(pCode);
+        indirect.add(pCode);
+        queue.push(pCode);
+      }
+    });
+  }
+
+  return { direct, indirect };
+}
+
 function renderGrid() {
   const container = document.getElementById('curriculum-grid');
   container.innerHTML = '';
 
   const semestres = [...new Set(subjects.map(s => s.semestre))].sort((a, b) => a - b);
+  let tracerDeps = { direct: new Set(), indirect: new Set() };
+
+  if (currentTab === 'tracer' && selectedTracerCode) {
+    tracerDeps = getBackwardDependencies(selectedTracerCode);
+  }
 
   semestres.forEach(sem => {
     const col = document.createElement('div');
@@ -68,19 +137,49 @@ function renderGrid() {
 
     const semSubjects = subjects.filter(s => s.semestre === sem);
     semSubjects.forEach(s => {
-      const status = evaluateStatus(s);
       const card = document.createElement('div');
-      card.className = `subject-card status-${status}`;
-      card.onclick = () => toggleState(s.codigo);
+      card.onclick = () => handleCardClick(s.codigo);
 
-      card.innerHTML = `
-        <div class="subject-title">${s.nombre}</div>
-        <div class="subject-code">${s.codigo}</div>
-        <div class="subject-meta">
-          <span>Créditos: ${s.creditos}</span>
-          <span>${state[s.codigo].toUpperCase()}</span>
-        </div>
-      `;
+      if (currentTab === 'simulador') {
+        const status = evaluateStatus(s);
+        card.className = `subject-card status-${status}`;
+        card.innerHTML = `
+          <div class="subject-title">${s.nombre}</div>
+          <div class="subject-code">${s.codigo}</div>
+          <div class="subject-meta">
+            <span>Créditos: ${s.creditos}</span>
+            <span>${state[s.codigo].toUpperCase()}</span>
+          </div>
+        `;
+      } else {
+        // Tab Rastreador
+        let tracerClass = '';
+        let badgeText = state[s.codigo].toUpperCase();
+
+        if (s.codigo === selectedTracerCode) {
+          tracerClass = 'tracer-target';
+          badgeText = 'SELECCIONADA';
+        } else if (tracerDeps.direct.has(s.codigo)) {
+          tracerClass = 'tracer-direct';
+          badgeText = 'PREVIA DIRECTA';
+        } else if (tracerDeps.indirect.has(s.codigo)) {
+          tracerClass = 'tracer-indirect';
+          badgeText = 'PREVIA INDIRECTA';
+        } else if (selectedTracerCode) {
+          tracerClass = 'tracer-dimmed';
+        }
+
+        card.className = `subject-card ${tracerClass}`;
+        card.innerHTML = `
+          <div class="subject-title">${s.nombre}</div>
+          <div class="subject-code">${s.codigo}</div>
+          <div class="subject-meta">
+            <span>Créditos: ${s.creditos}</span>
+            <span>${badgeText}</span>
+          </div>
+        `;
+      }
+
       col.appendChild(card);
     });
 

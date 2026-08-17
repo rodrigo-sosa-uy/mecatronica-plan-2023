@@ -8,12 +8,22 @@
 </head>
 <body>
   <header>
-    <h1>Plan de Estudios - Ingeniería Mecatrónica</h1>
+    <div>
+      <h1>Navegador del Plan de Estudios 2023 de Ingeniería en Mecatrónica</h1>
+      <nav class="tab-nav">
+        <button id="tab-simulador" class="tab-btn active" onclick="setTab('simulador')">Simulador de Avance</button>
+        <button id="tab-tracer" class="tab-btn" onclick="setTab('tracer')">Rastreador de Prerrequisitos</button>
+      </nav>
+    </div>
     <div id="stats">
       <span>Créditos aprobados: <strong id="credits-count">0</strong> / 328</span>
       <span>Progreso: <strong id="progress-percent">0%</strong></span>
     </div>
   </header>
+
+  <div id="tab-info" class="info-banner">
+    Haz clic en las materias para cambiar su estado (Disponible ➔ Cursado ➔ Aprobado).
+  </div>
 
   <main id="curriculum-grid"></main>
 
