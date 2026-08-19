@@ -4,10 +4,6 @@
   --text: #f8fafc;
   --muted: #94a3b8;
   --border: #334155;
-  --aprobado: #10b981;
-  --cursado: #f59e0b;
-  --disponible: #3b82f6;
-  --bloqueado: #475569;
   
   /* Colores para el Rastreador según el tipo de previa */
   --req-aprobado: #f43f5e;
@@ -22,82 +18,58 @@ body {
   background-color: var(--bg);
   color: var(--text);
   padding: 20px;
+  line-height: 1.5;
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   border-bottom: 2px solid var(--border);
   padding-bottom: 15px;
-  margin-bottom: 15px;
-  flex-wrap: wrap;
-  gap: 15px;
+  margin-bottom: 20px;
 }
 
-.tab-nav {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
+h1 { margin: 0 0 5px 0; font-size: 1.8rem; }
+.subtitle { margin: 0; color: var(--muted); }
 
-.tab-btn {
-  background: var(--card-bg);
-  color: var(--text);
-  border: 1px solid var(--border);
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.2s;
-}
-
-.tab-btn.active {
-  background: var(--disponible);
-  border-color: var(--disponible);
-}
-
-.info-banner {
+.info-section {
   background: rgba(30, 41, 59, 0.8);
   border: 1px solid var(--border);
-  padding: 12px 18px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  font-size: 0.9rem;
-  color: var(--text);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
 }
 
 .tracer-legend {
   display: flex;
-  gap: 15px;
+  gap: 20px;
   flex-wrap: wrap;
-  margin-top: 8px;
   font-weight: 500;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border);
 }
 
 .legend-item {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .legend-box {
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
   border: 2px solid transparent;
 }
 
-#stats {
-  display: flex;
-  gap: 20px;
-  font-size: 1.1rem;
-}
+.definitions h3 { margin: 15px 0 10px 0; font-size: 1.1rem; color: #93c5fd; }
+.definitions ul { margin: 0; padding-left: 20px; color: #cbd5e1; font-size: 0.95rem; }
+.definitions li { margin-bottom: 6px; }
+.definitions strong { color: var(--text); }
 
 #curriculum-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 15px;
+  margin-bottom: 40px;
 }
 
 .semester-col {
@@ -118,7 +90,7 @@ header {
 
 .subject-card {
   background: var(--card-bg);
-  border: 2px solid var(--bloqueado);
+  border: 2px solid var(--border);
   border-radius: 6px;
   padding: 10px;
   margin-bottom: 10px;
@@ -127,34 +99,17 @@ header {
   user-select: none;
 }
 
-.subject-card:hover {
-  transform: translateY(-2px);
-}
-
+.subject-card:hover { transform: translateY(-2px); border-color: #64748b; }
 .subject-title { font-weight: 600; font-size: 0.95rem; }
 .subject-code { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
 .subject-meta {
   display: flex;
   justify-content: space-between;
-  font-size: 0.8rem;
-  margin-top: 8px;
-  color: var(--muted);
-}
-
-.subject-missing {
   font-size: 0.75rem;
-  color: #f87171;
   margin-top: 8px;
-  padding-top: 6px;
-  border-top: 1px dashed rgba(239, 68, 68, 0.3);
-  line-height: 1.2;
+  color: var(--text);
+  font-weight: bold;
 }
-
-/* Modos del Simulador */
-.subject-card.status-bloqueado { border-color: var(--bloqueado); opacity: 0.75; cursor: not-allowed; }
-.subject-card.status-disponible { border-color: var(--disponible); }
-.subject-card.status-cursado { border-color: var(--cursado); background: rgba(245, 158, 11, 0.1); }
-.subject-card.status-aprobado { border-color: var(--aprobado); background: rgba(16, 185, 129, 0.1); }
 
 /* Modos del Rastreador por tipo de previa */
 .subject-card.tracer-target {
@@ -173,3 +128,20 @@ header {
 .subject-card.level-indirect { border-style: dashed; border-width: 2px; opacity: 0.85; }
 
 .subject-card.tracer-dimmed { opacity: 0.25; }
+
+footer {
+  border-top: 2px solid var(--border);
+  padding-top: 20px;
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+footer a { color: #3b82f6; text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+.contact-info { margin-bottom: 15px; font-size: 1rem; color: var(--text); }
+.disclaimer { background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 6px; border-left: 4px solid #ef4444; margin-bottom: 15px; }
+.disclaimer p { margin: 0 0 10px 0; }
+.disclaimer p:last-child { margin: 0; color: #fca5a5; }
+.acknowledgments { background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); padding: 12px; border-radius: 6px; color: #a7f3d0; }

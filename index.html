@@ -3,27 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plan 2023 - Ingeniería en Mecatrónica</title>
+  <title>Plan 2023 - Rastreador de Prerrequisitos</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <div>
-      <h1>Navegador del Plan de Estudios 2023 de Ingeniería en Mecatrónica</h1>
-      <nav class="tab-nav">
-        <button id="tab-simulador" class="tab-btn active" onclick="setTab('simulador')">Simulador de Avance</button>
-        <button id="tab-tracer" class="tab-btn" onclick="setTab('tracer')">Rastreador de Prerrequisitos</button>
-      </nav>
-    </div>
-    <div id="stats">
-      <span>Créditos aprobados: <strong id="credits-count">0</strong> / 391</span>
-      <span>Progreso: <strong id="progress-percent">0%</strong></span>
+      <h1>Rastreador de Prerrequisitos - Ingeniería en Mecatrónica</h1>
+      <p class="subtitle">Haz clic en cualquier materia para inspeccionar toda la cadena de requisitos requeridos hacia atrás.</p>
     </div>
   </header>
 
-  <div id="tab-info" class="info-banner"></div>
+  <div class="info-section">
+    <div class="tracer-legend">
+      <span class="legend-item"><span class="legend-box" style="background:var(--req-aprobado)"></span> Exige Aprobado</span>
+      <span class="legend-item"><span class="legend-box" style="background:var(--req-curso)"></span> Exige Curso</span>
+      <span class="legend-item"><span class="legend-box" style="background:var(--req-correquisito)"></span> Correquisito</span>
+      <span class="legend-item"><span class="legend-box" style="background:var(--req-semestre)"></span> Semestre Completo</span>
+      <span class="legend-item"><span class="legend-box" style="border:2px solid #fff"></span> Borde Sólido: Directa</span>
+      <span class="legend-item"><span class="legend-box" style="border:2px dashed #fff"></span> Borde Punteado: Indirecta</span>
+    </div>
+
+    <div class="definitions">
+      <h3>Glosario de Términos</h3>
+      <ul>
+        <li><strong>Curso:</strong> La unidad curricular no está aprobada (4,00 o más de nota final), pero se encuentra en situación de examen reglamentado (calificación entre 3,00 y 3,99).</li>
+        <li><strong>Aprobado:</strong> La unidad curricular se encuentra exonerada o aprobada (calificación final igual o mayor a 4,00).</li>
+        <li><strong>Correquisito:</strong> Es obligatorio estar cursando las unidades curriculares del mismo semestre que se especifican, a la par de la que se desea matricular.</li>
+      </ul>
+    </div>
+  </div>
 
   <main id="curriculum-grid"></main>
+
+  <footer>
+    <div class="contact-info">
+      <strong>Contacto para recomendaciones o cambios:</strong> <a href="mailto:rodrigo.sosa@utec.edu.uy">rodrigo.sosa@utec.edu.uy</a>
+    </div>
+    
+    <div class="disclaimer">
+      <p><strong>Aviso Legal:</strong> Este proyecto es una herramienta de software libre, creada de manera independiente y no oficial. No cuenta con afiliación, aval ni respaldo por parte de la Universidad Tecnológica del Uruguay (UTEC), ni de sus coordinaciones o secretarías académicas. La información referente a las asignaturas, sus créditos y prerrequisitos ha sido recopilada a partir de los planes de estudio públicos. Es deber del estudiante corroborar su situación académica definitiva y oficial exclusivamente a través del Portal Académico de UTEC.</p>
+      <p><em>La utilización de esta plataforma y la interpretación de los datos mostrados son de exclusiva responsabilidad del usuario.</em></p>
+    </div>
+
+    <div class="acknowledgments">
+      <strong>Agradecimientos por contribuir en la mejora de esta herramienta a:</strong><br>
+      Emilio Fernandez, Fabio Perochena, Paris Facho, Ramiro Rodriguez, Tadeo Addiego.
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>

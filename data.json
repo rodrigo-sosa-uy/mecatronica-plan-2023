@@ -996,4 +996,46 @@
       "correquisito": []
     }
   }
+  
+,
+  {
+    "codigo": "IMEC-ENG1", "nombre": "Inglés 1", "semestre": 1, "creditos": 0, "horasClase": 0, "horasTotales": 0,
+    "previas": { "curso": [], "aprobado": [], "semestreCompleto": null, "correquisito": [] }
+  },
+  {
+    "codigo": "IMEC-ENG2", "nombre": "Inglés 2", "semestre": 2, "creditos": 0, "horasClase": 0, "horasTotales": 0,
+    "previas": { "curso": [], "aprobado": ["IMEC-ENG1"], "semestreCompleto": null, "correquisito": [] }
+  },
+  {
+    "codigo": "IMEC-ENG3", "nombre": "Inglés 3", "semestre": 3, "creditos": 0, "horasClase": 0, "horasTotales": 0,
+    "previas": { "curso": [], "aprobado": ["IMEC-ENG2"], "semestreCompleto": null, "correquisito": [] }
+  },
+  {
+    "codigo": "IMEC-ENG4", "nombre": "Inglés 4", "semestre": 4, "creditos": 0, "horasClase": 0, "horasTotales": 0,
+    "previas": { "curso": [], "aprobado": ["IMEC-ENG3"], "semestreCompleto": null, "correquisito": [] }
+  },
+  {
+    "codigo": "IMEC-ENG5", "nombre": "Inglés 5", "semestre": 5, "creditos": 0, "horasClase": 0, "horasTotales": 0,
+    "previas": { "curso": [], "aprobado": ["IMEC-ENG4"], "semestreCompleto": null, "correquisito": [] }
+  },
+  {
+    "codigo": "IMEC-ENG6", "nombre": "Inglés 6", "semestre": 6, "creditos": 0, "horasClase": 0, "horasTotales": 0,
+    "previas": { "curso": [], "aprobado": ["IMEC-ENG5"], "semestreCompleto": null, "correquisito": [] }
+  },
+  {
+    "codigo": "IMEC-ENG7", "nombre": "Inglés 7", "semestre": 7, "creditos": 0, "horasClase": 0, "horasTotales": 0,
+    "previas": { "curso": [], "aprobado": ["IMEC-ENG6"], "semestreCompleto": null, "correquisito": [] }
+  },
+  {
+    "codigo": "IMEC-ENG8", "nombre": "Inglés 8", "semestre": 8, "creditos": 0, "horasClase": 0, "horasTotales": 0,
+    "previas": { "curso": [], "aprobado": ["IMEC-ENG7"], "semestreCompleto": null, "correquisito": [] }
+  },
+  {
+    "codigo": "IMEC-ENG9", "nombre": "Inglés 9", "semestre": 9, "creditos": 0, "horasClase": 0, "horasTotales": 0,
+    "previas": { "curso": [], "aprobado": ["IMEC-ENG8"], "semestreCompleto": null, "correquisito": [] }
+  },
+  {
+    "codigo": "IMEC-ENG10", "nombre": "Inglés 10", "semestre": 10, "creditos": 0, "horasClase": 0, "horasTotales": 0,
+    "previas": { "curso": [], "aprobado": ["IMEC-ENG9"], "semestreCompleto": null, "correquisito": [] }
+  }
 ]
