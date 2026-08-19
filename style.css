@@ -145,3 +145,6 @@ footer a:hover { text-decoration: underline; }
 .disclaimer p { margin: 0 0 10px 0; }
 .disclaimer p:last-child { margin: 0; color: #fca5a5; }
 .acknowledgments { background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); padding: 12px; border-radius: 6px; color: #a7f3d0; }
+.contact-info, .disclaimer, .acknowledgments {
+  text-align: center;
+}
